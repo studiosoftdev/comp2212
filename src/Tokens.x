@@ -1,5 +1,5 @@
 { 
-module MDLTokens where 
+module Tokens where 
 }
 
 %wrapper "posn" 
@@ -20,7 +20,7 @@ $white+       ; -- for space
 data Token = 
   TokenDuplicate AlexPosn Int Int   | 
   TokenNewLine  AlexPosn            | 
-  TokenEnd AlexPosn                 |
+  TokenEnd AlexPosn                 
   deriving (Eq,Show) 
 
 tokenPosn :: Token -> String
