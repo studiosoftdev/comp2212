@@ -12,7 +12,7 @@ import Data.Array
 #else
 import Array
 #endif
-#define ALEX_POSN 1
+#define ALEX_BASIC 1
 -- -----------------------------------------------------------------------------
 -- Alex wrapper code.
 --
@@ -2518,23 +2518,27 @@ alex_actions = array (0 :: Int, 3)
   , (0,alex_action_3)
   ]
 
-{-# LINE 16 "Tokens.x" #-}
+{-# LINE 17 "Tokens.x" #-}
 -- Each action has type :: AlexPosn -> String -> Token 
 
 -- The token type: 
 data Token = 
-  TokenDuplicate AlexPosn Int Int   | 
-  TokenNewLine  AlexPosn            | 
-  TokenEnd AlexPosn                 
+  TokenDuplicate Int Int   | 
+  TokenNewLine             | 
+  TokenEnd                 
   deriving (Eq,Show) 
 
-tokenPosn :: Token -> String
-tokenPosn (TokenDuplicate (AlexPn a l c) _ _) = show(l) ++ ":" ++ show(c)
-tokenPosn (TokenNewLine  (AlexPn a l c)) = show(l) ++ ":" ++ show(c)
-tokenPosn (TokenEnd  (AlexPn a l c)) = show(l) ++ ":" ++ show(c)
-alex_action_2 = (\d n -> TokenDuplicate d n)
-alex_action_3 = (\d n -> TokenNewLine d)
-alex_action_4 = (\d n -> TokenEnd d)
+-- tokenPosn :: Token -> String
+-- tokenPosn (TokenDuplicate (AlexPn a l c) _ _) = show(l) ++ ":" ++ show(c)
+-- tokenPosn (TokenNewLine  (AlexPn a l c)) = show(l) ++ ":" ++ show(c)
+-- tokenPosn (TokenEnd  (AlexPn a l c)) = show(l) ++ ":" ++ show(c)
+
+main = do
+  s <- getContents
+  print(alexScanTokens s)
+alex_action_2 = (\d -> TokenDuplicate d)
+alex_action_3 = (\d -> TokenNewLine)
+alex_action_4 = (\d -> TokenEnd)
 
 #define ALEX_NOPRED 1
 -- -----------------------------------------------------------------------------
