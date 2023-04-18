@@ -10,7 +10,7 @@ $digit = 0-9
 tokens :-
 $white+       ; -- for space 
   "--".*        ; -- * means anything after that is comment
-  duplicate     {(\d -> TokenDuplicate d)}
+  duplicate     {(\d e -> TokenDuplicate (read d) (read e))}
   newline       {(\d -> TokenNewLine)}
   end           {(\d -> TokenEnd)}
 

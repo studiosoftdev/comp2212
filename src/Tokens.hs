@@ -2536,9 +2536,9 @@ data Token =
 main = do
   s <- getContents
   print(alexScanTokens s)
-alex_action_2 = (\d -> TokenDuplicate d)
-alex_action_3 = (\d -> TokenNewLine)
-alex_action_4 = (\d -> TokenEnd)
+alex_action_2 = (\d e -> TokenDuplicate (read d) (read e))
+alex_action_3 = (\d -> TokenNewLine (read d))
+alex_action_4 = (\d -> TokenEnd (read d))
 
 #define ALEX_NOPRED 1
 -- -----------------------------------------------------------------------------
