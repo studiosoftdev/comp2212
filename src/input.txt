@@ -1,0 +1,5 @@
+10
+duplicate0 5
+newline
+duplicate1 10
+end
